@@ -13,7 +13,7 @@ import "../styles/global.css";
   <body class="bg-Light-Grayish-Blue">
     <main class="font-Manrope h-screen flex justify-center items-center md:p-6">
       <article
-        class="relative bg-white shadow-xl rounded-xl w-[370px] overflow-clip xl:overflow-visible flex flex-col md:w-[800px] md:flex-row hover:-translate-y-4 hover:shadow-2xl transform-all duration-300"
+        class="relative bg-white shadow-xl rounded-xl w-[370px] overflow-clip md:overflow-visible flex flex-col md:w-[800px] md:flex-row hover:-translate-y-4 hover:shadow-2xl transform-all duration-300"
       >
         <img class="md:w-80" src="/Articleproduct/images/drawers.jpg" alt="drawers" />
 
@@ -62,10 +62,10 @@ import "../styles/global.css";
      
 
  <!-- Panel de compartir  -->
-<div id="shareMenu" class="absolute left-0 w-full bottom-0  bg-Very-Dark-Grayish-Blue text-white p-6 z-10 flex items-center justify-between 
-md:bottom-22 md:left-105 md:w-70 md:p-4 md:rounded-xl md:shadow-lg md:justify-center 
-lg:left-153
-hidden transition-all duration-300 ease-out transform
+<div id="shareMenu" class="absolute left-0 w-full bottom-0 bg-Very-Dark-Grayish-Blue text-white p-6 z-10 flex items-center justify-between
+         sm:bottom-20 sm:right-5 sm:w-70 sm:left-auto sm:p-4 sm:rounded-xl sm:shadow-lg sm:justify-center
+         lg:left-153 lg:w-70 lg:right-auto
+         hidden transition-all duration-300 ease-out transform
 ">
   <div class="flex justify-start gap-6">
     <span class=" text-Grayish-Blue tracking-[8px]">SHARE</span>
@@ -75,7 +75,7 @@ hidden transition-all duration-300 ease-out transform
   </div>
   <button
     id="closeShareBtn"
-    class="cursor-pointer bg-Light-Grayish-Blue p-2 rounded-full hover:bg-Grayish-Blue transition md:hidden"
+    class="cursor-pointer bg-Light-Grayish-Blue p-2 rounded-full hover:bg-Grayish-Blue transition sm:hidden"
   > 
     <img
       class="size-3"
@@ -159,7 +159,7 @@ hidden transition-all duration-300 ease-out transform
 
 <style>
 
-	 @media (min-width: 768px) { 
+	 @media (min-width: 683px) { 
     #shareMenu::after {
       content: "";
       position: absolute;
@@ -177,7 +177,7 @@ hidden transition-all duration-300 ease-out transform
     }
   }
  
-  @media (min-width: 1280px) { 
+  @media (min-width: 1024px) { 
     #shareMenu::after {
       content: "";
       position: absolute;
