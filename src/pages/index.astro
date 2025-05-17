@@ -1,0 +1,197 @@
+---
+import "../styles/global.css";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Article</title>
+  </head>
+  <body class="bg-Light-Grayish-Blue">
+    <main class="font-Manrope h-screen flex justify-center items-center md:p-6">
+      <article
+        class="relative bg-white shadow-xl rounded-xl w-[370px] overflow-clip xl:overflow-visible flex flex-col md:w-[800px] md:flex-row hover:-translate-y-4 hover:shadow-2xl transform-all duration-300"
+      >
+        <img class="md:w-80" src="/images/drawers.jpg" alt="drawers" />
+
+        <div class="p-8 text-Desaturated-Dark-Blue">
+          <h1 class="mb-4 text-xl font-bold text-Very-Dark-Grayish-Blue">
+            Shift the overall look and feel by adding these wonderful touches to
+            furniture in your home
+          </h1>
+
+          <p class="mb-8">
+            Ever been in a room and felt like something was missing? Perhaps it
+            felt slightly bare and uninviting. I’ve got some simple tips to help
+            you make any room feel complete.
+          </p>
+
+          <footer class="  flex justify-between items-center">
+            <div class="flex gap-4">
+              <img
+                class="size-12 rounded-full"
+                src="/images/avatar-michelle.jpg"
+                alt="avatar-michelle"
+              />
+
+              <div>
+                <h2 class="text-Very-Dark-Grayish-Blue font-bold">
+                  Michelle Appleton
+                </h2>
+
+                <p>28 Jun 2020</p>
+              </div>
+            </div>
+
+            <div class="flex justify-end items-center">
+              <button
+                id="shareBtn"
+                class="cursor-pointer bg-Light-Grayish-Blue p-2 rounded-full hover:bg-Grayish-Blue transition"
+              >
+                <img
+                  class="size-4 "
+                  src="images/icon-share.svg"
+                  alt="share icon"
+                />
+              </button>
+            </div>
+
+     
+
+ <!-- Panel de compartir  -->
+<div id="shareMenu" class="absolute left-0 w-full bottom-0  bg-Very-Dark-Grayish-Blue text-white p-6 z-10 flex items-center justify-between 
+md:bottom-22 md:left-105 md:w-70 md:p-4 md:rounded-xl md:shadow-lg md:justify-center 
+lg:left-153
+hidden transition-all duration-300 ease-out transform
+">
+  <div class="flex justify-start gap-6">
+    <span class=" text-Grayish-Blue tracking-[8px]">SHARE</span>
+    <a href="#"><img src="images/icon-facebook.svg" class="w-5 h-5" alt="Facebook"></a>
+    <a href="#"><img src="images/icon-twitter.svg" class="w-5 h-5" alt="Twitter"></a>
+    <a href="#"><img src="images/icon-pinterest.svg" class="w-5 h-5" alt="Pinterest"></a>
+  </div>
+  <button
+    id="closeShareBtn"
+    class="cursor-pointer bg-Light-Grayish-Blue p-2 rounded-full hover:bg-Grayish-Blue transition md:hidden"
+  > 
+    <img
+      class="size-3"
+      src="images/icon-share.svg"
+      alt="share icon"
+    />
+  </button>
+</div>
+
+  
+          </footer>
+        </div>
+      </article>
+    </main>
+
+    
+  </body>
+</html>
+
+<script>
+  const shareBtn = document.getElementById('shareBtn');
+  const shareMenu = document.getElementById('shareMenu');
+  const closeShareBtn = document.getElementById('closeShareBtn');  
+  const transitionDuration = 300;  
+  const hiddenStateClasses = ['opacity-0', 'translate-y-4', 'scale-95', 'pointer-events-none'];  
+  const visibleStateClasses = ['opacity-100', 'translate-y-0', 'scale-100', 'pointer-events-auto'];
+
+  function openMenu() {
+    if (!shareMenu) return;
+    
+    shareMenu.classList.remove('hidden');    
+    shareMenu.classList.remove(...visibleStateClasses);
+    shareMenu.classList.add(...hiddenStateClasses);
+        
+    void shareMenu.offsetWidth;
+
+    shareMenu.classList.remove(...hiddenStateClasses);
+    shareMenu.classList.add(...visibleStateClasses);
+  }
+
+  function closeMenu() {
+    if (!shareMenu) return;
+    
+    shareMenu.classList.remove(...visibleStateClasses);
+    shareMenu.classList.add(...hiddenStateClasses);
+
+    setTimeout(() => {
+      if (shareMenu.classList.contains('opacity-0')) {
+        shareMenu.classList.add('hidden');
+      }
+    }, transitionDuration);
+  }
+
+  if (shareBtn && shareMenu && closeShareBtn) {
+    shareBtn.addEventListener('click', (event) => {
+      event.stopPropagation(); 
+
+      const isEffectivelyHidden = shareMenu.classList.contains('hidden') || shareMenu.classList.contains('opacity-0');
+
+      if (isEffectivelyHidden) {
+        openMenu();
+      } else {
+        closeMenu();
+      }
+    });
+
+    closeShareBtn.addEventListener("click", (event) => {
+      event.stopPropagation();
+      closeMenu();
+    });
+
+    // Cerrar el menú si se hace clic fuera de él
+    document.addEventListener('click', (event) => {
+      if (!shareMenu.classList.contains('hidden') && !shareMenu.contains(event.target) && event.target !== shareBtn) {
+        closeMenu();
+      }
+    });
+
+  }
+</script>
+
+<style>
+
+	 @media (min-width: 768px) { 
+    #shareMenu::after {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 0;
+      /* Triángulo apuntando hacia abajo */
+      border-left: 10px solid transparent;  /* Ancho de la mitad de la base del triángulo */
+      border-right: 10px solid transparent; /* Ancho de la mitad de la base del triángulo */
+      border-top: 10px solid hsl(217, 19%, 35%); /* Altura y color del triángulo */
+      
+      /* Posicionamiento del triángulo */
+      bottom: -10px; 
+      left: 90%; 
+      transform: translateX(-50%);
+    }
+  }
+ 
+  @media (min-width: 1280px) { 
+    #shareMenu::after {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 0;
+      /* Triángulo apuntando hacia abajo */
+      border-left: 10px solid transparent;  /* Ancho de la mitad de la base del triángulo */
+      border-right: 10px solid transparent; /* Ancho de la mitad de la base del triángulo */
+      border-top: 10px solid hsl(217, 19%, 35%); /* Altura y color del triángulo */
+      
+      /* Posicionamiento del triángulo */
+      bottom: -10px; 
+      left: 50%; 
+      transform: translateX(-50%);
+    }
+  }
+</style>
